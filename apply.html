@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHINE infotech - Application Form</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'neon-cyan': '0 0 20px rgba(6, 182, 212, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-xl w-full mx-auto bg-slate-900/80 border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-md">
+        
+        <!-- Header Info -->
+        <div class="text-center mb-8">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Course Application Form</h1>
+            <p class="text-sm text-gray-400 mt-2">Fill out your details below to enroll in SHINE infotech live batches.</p>
+        </div>
+
+        <!-- Application Form -->
+        <form id="applicationForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+            
+            <!-- Full Name -->
+            <div>
+                <label class="block text-xs uppercase font-mono text-cyan-400 font-semibold mb-1">Full Name</label>
+                <input type="text" id="fullName" required placeholder="Enter your full name" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+            </div>
+
+            <!-- Contact Number -->
+            <div>
+                <label class="block text-xs uppercase font-mono text-cyan-400 font-semibold mb-1">Contact Number</label>
+                <input type="tel" id="contactNumber" required placeholder="Enter 10-digit mobile number" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+            </div>
+
+            <!-- Email Address -->
+            <div>
+                <label class="block text-xs uppercase font-mono text-cyan-400 font-semibold mb-1">Email Address</label>
+                <input type="email" id="email" required placeholder="Enter your email address" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+            </div>
+
+            <!-- WhatsApp Number -->
+            <div>
+                <label class="block text-xs uppercase font-mono text-cyan-400 font-semibold mb-1">WhatsApp Number</label>
+                <input type="tel" id="whatsappNumber" required placeholder="Enter WhatsApp number" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+            </div>
+
+            <!-- Qualification Dropdown -->
+            <div>
+                <label class="block text-xs uppercase font-mono text-cyan-400 font-semibold mb-1">Qualification</label>
+                <select id="qualification" required 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                    <option value="" disabled selected>Select your qualification</option>
+                    <option value="Student">Student</option>
+                    <option value="Graduate">Graduate</option>
+                </select>
+            </div>
+
+            <!-- Level of Entry Dropdown -->
+            <div>
+                <label class="block text-xs uppercase font-mono text-cyan-400 font-semibold mb-1">Level of Entry</label>
+                <select id="levelOfEntry" required 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                    <option value="" disabled selected>Select your level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                </select>
+            </div>
+
+            <!-- Select Course Dropdown -->
+            <div>
+                <label class="block text-xs uppercase font-mono text-cyan-400 font-semibold mb-1">Select Course</label>
+                <select id="selectCourse" required 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                    <option value="" disabled selected>Select course plan</option>
+                    <option value="Fast-Track Beginner">Fast-Track Beginner (Rs. 999 - 1499)</option>
+                    <option value="Portfolio & Project Level">Portfolio & Project Level (Rs. 1,999 - 2,999)</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitBtn" 
+                class="w-full mt-4 py-3.5 rounded-xl bg-gradient-to-r from-[#00A8E8] to-[#2563EB] hover:opacity-90 text-black font-extrabold text-sm transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50">
+                <span id="btnText">Submit Application</span>
+                <i id="btnIcon" class="fa-solid fa-arrow-right text-sm"></i>
+            </button>
+
+        </form>
+
+        <!-- Already Submitted Notification / Success Box (Hidden by default) -->
+        <div id="submittedMsg" class="hidden text-center py-8">
+            <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-3xl rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Application Already Submitted!</h3>
+            <p class="text-gray-400 text-sm mt-2">You have already submitted your application from this device. Re-submission or editing is not permitted.</p>
+            <div class="mt-6">
+                <a href="index.html" class="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-400 font-semibold text-xs transition-all border border-white/10">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript to Handle Single Submission & Google Sheets Integration -->
+    <script>
+        // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz6N8ngXwYyNCgVmYYnT3Q6N8PvERvFCIy13WT3GhnOZMa1Z7GvsG4D05EZX1lzDii0Rg/exec';
+
+        // Check if user has already submitted on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const isSubmitted = localStorage.getItem('shineInfotechApplicationSubmitted');
+            if (isSubmitted === 'true') {
+                lockFormState();
+            }
+        });
+
+        async function handleFormSubmit(event) {
+            event.preventDefault(); // Stop default form reload
+
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+
+            // Disable button during submit and show loading effect
+            submitBtn.disabled = true;
+            btnText.innerText = "Submitting...";
+            btnIcon.className = "fa-solid fa-spinner fa-spin text-sm";
+
+            // Get form values
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                contactNumber: document.getElementById('contactNumber').value,
+                email: document.getElementById('email').value,
+                whatsappNumber: document.getElementById('whatsappNumber').value,
+                qualification: document.getElementById('qualification').value,
+                levelOfEntry: document.getElementById('levelOfEntry').value,
+                selectCourse: document.getElementById('selectCourse').value
+            };
+
+            try {
+                // Send data to Google Sheets via fetch (using no-cors mode)
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Save status in localStorage to lock form on this device permanently
+                localStorage.setItem('shineInfotechApplicationSubmitted', 'true');
+
+                // Lock form and show success state
+                lockFormState();
+                alert("Application submitted successfully!");
+
+            } catch (error) {
+                console.error('Error!', error.message);
+                alert("Something went wrong. Please try again!");
+                submitBtn.disabled = false;
+                btnText.innerText = "Submit Application";
+                btnIcon.className = "fa-solid fa-arrow-right text-sm";
+            }
+        }
+
+        function lockFormState() {
+            // Hide the form
+            document.getElementById('applicationForm').classList.add('hidden');
+            // Show the already submitted success message box
+            document.getElementById('submittedMsg').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
